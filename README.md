@@ -1,59 +1,47 @@
-CREATE DATABASE EcommerceDB;
-USE EcommerceDB;
+# 📦 E-commerce Database Schema – Task 1
 
-CREATE TABLE Customers (
-    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) UNIQUE,
-    Address TEXT
-);
+## 📁 Internship: SQL Developer - Task 1
 
-CREATE TABLE Categories (
-    CategoryID INT PRIMARY KEY AUTO_INCREMENT,
-    CategoryName VARCHAR(100) NOT NULL UNIQUE
-);
+### 📚 Domain: E-commerce
 
-CREATE TABLE Products (
-    ProductID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100) NOT NULL,
-    Price DECIMAL(10, 2),
-    Stock INT,
-    CategoryID INT,
-    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
-);
+This project models an e-commerce system using SQL. It defines a normalized relational database schema for managing customers, products, orders, payments, and shipping.
 
-CREATE TABLE Orders (
-    OrderID INT PRIMARY KEY AUTO_INCREMENT,
-    CustomerID INT,
-    OrderDate DATE,
-    Status VARCHAR(50),
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
-);
+---
 
-CREATE TABLE Order_Items (
-    OrderItemID INT PRIMARY KEY AUTO_INCREMENT,
-    OrderID INT,
-    ProductID INT,
-    Quantity INT,
-    Subtotal DECIMAL(10, 2),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
-);
+### 🧱 Tables:
+- `Customers`
+- `Categories`
+- `Products`
+- `Orders`
+- `Order_Items`
+- `Payments`
+- `Shipping`
 
-CREATE TABLE Payments (
-    PaymentID INT PRIMARY KEY AUTO_INCREMENT,
-    OrderID INT,
-    PaymentDate DATE,
-    Amount DECIMAL(10, 2),
-    PaymentMethod VARCHAR(50),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
-);
+---
 
-CREATE TABLE Shipping (
-    ShippingID INT PRIMARY KEY AUTO_INCREMENT,
-    OrderID INT,
-    ShippingDate DATE,
-    ShippingStatus VARCHAR(50),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
-);
+### 🔗 Relationships:
+- One customer → many orders
+- One order → many products (via `Order_Items`)
+- One product → one category
+- One order → one payment, one shipping
+
+---
+
+### ⚙️ Tools Used:
+- MySQL Workbench
+- dbdiagram.io
+- GitHub
+
+---
+
+### 📦 Files in this Repo:
+- `ecommerce_schema.sql` – SQL script
+- `Ecommerce_Database_Task1.pdf` – Task report
+- *(Optional)* `er_diagram.png` – Visual ER diagram
+
+---
+
+### ✅ Author:
+Ramakanth Devineni
+
 
